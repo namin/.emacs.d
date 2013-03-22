@@ -12,7 +12,7 @@
                       scala-mode
                       markdown-mode
                       rainbow-delimiters
-                      undo-tree)
+                      undo-tree browse-kill-ring)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -30,6 +30,7 @@
 (remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
 (setq-default tab-width 2)
+(setq-default c-basic-indent 2)
 (setq visible-bell nil)
 
 (global-undo-tree-mode t)
