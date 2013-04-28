@@ -9,6 +9,7 @@
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
                       starter-kit-eshell
                       clojure-mode clojure-test-mode nrepl
+                      scheme-complete
                       scala-mode
                       markdown-mode
                       rainbow-delimiters
@@ -30,13 +31,15 @@
 (remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
 (setq-default tab-width 2)
-(setq-default c-basic-indent 2)
+;(setq-default c-basic-indent 2)
+;(setq-default lisp-indent-offset 2)
 (setq visible-bell nil)
 
 (global-undo-tree-mode t)
 
-(set-default-font "Droid Sans Mono 14")
+(set-default-font "Inconsolata 16")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -51,3 +54,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(region ((t (:background "white smoke")))))
+
+(load-file "~/.racket/planet/300/5.3.3/cache/neil/scribble-emacs.plt/1/2/scribble.el")
+(require 'scribble)
