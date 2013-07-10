@@ -47,3 +47,10 @@
  ;; If there is more than one, they won't work right.
  '(scheme-program-name "petite"))
 
+(setq twelf-root "~/local/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
+
+(defun run-mechanics-scheme ()
+  "Runs scmutils"
+  (interactive)
+  (run-scheme "~/.emacs.d/mechanics-emacs")
+  (process-kill-without-query (get-process "scheme")))
