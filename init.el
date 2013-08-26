@@ -22,6 +22,7 @@
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
+(menu-bar-mode t)
 
 (show-paren-mode t)
 (setq show-paren-style 'parenthesis)
@@ -37,6 +38,7 @@
 
 (global-undo-tree-mode t)
 
+(set-default-font "Inconsolata 17")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
