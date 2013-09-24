@@ -8,6 +8,7 @@
 
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
                       starter-kit-eshell
+                      exec-path-from-shell
                       clojure-mode clojure-test-mode nrepl
                       scheme-complete
                       scala-mode
@@ -19,6 +20,9 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
