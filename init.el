@@ -53,7 +53,7 @@
  ;; If there is more than one, they won't work right.
  '(scheme-program-name "petite"))
 
-(setq twelf-root "~/local/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
+(setq twelf-root "~/code/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
