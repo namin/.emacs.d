@@ -45,6 +45,7 @@
 (set-default-font "Inconsolata 17")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
+(add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
