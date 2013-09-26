@@ -35,7 +35,6 @@
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 (remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
-(setq-default indent-tabs-mode t)
 (setq-default tab-width 2)
 ;(setq-default c-basic-indent 2)
 ;(setq-default lisp-indent-offset 2)
