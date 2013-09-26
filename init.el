@@ -43,7 +43,7 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Inconsolata 17")
+(set-default-font "Inconsolata 14")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
