@@ -12,6 +12,7 @@
                       clojure-mode clojure-test-mode nrepl
                       scheme-complete
                       scala-mode
+                      sml-mode
                       markdown-mode
                       rainbow-delimiters
                       undo-tree browse-kill-ring)
@@ -47,6 +48,8 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
+(add-to-list 'auto-mode-alist '("\\.fun\\'" . sml-mode))
+(add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
