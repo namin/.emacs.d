@@ -65,3 +65,5 @@
   (interactive)
   (run-scheme "~/.emacs.d/mechanics-emacs")
   (process-kill-without-query (get-process "scheme")))
+
+(remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
