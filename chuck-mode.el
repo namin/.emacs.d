@@ -44,10 +44,10 @@
 ;  "Start a ChucK listener"
 ;  (interactive)
 ;  (start-process "ChucK" "*ChucK*" chuck-exec "--loop"))
-;(defun kill-chuck ()
-;  "Kills a running ChucK listener"
-;  (interactive)
-;  (call-process chuck-exec nil 0 "--kill"))
+(defun kill-chuck ()
+ "Kills a running ChucK listener"
+ (interactive)
+ (call-process chuck-exec nil 0 "--kill"))
 
 ;;try running chuck as an internal listener
 (defun start-chuck ()

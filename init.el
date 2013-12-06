@@ -1,6 +1,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/") t)
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -34,7 +36,7 @@
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
-(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
+;(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
 (global-set-key (kbd "<C-tab>") 'indent-relative-maybe)
 (setq-default tab-width 2)
@@ -56,7 +58,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(quack-programs (quote ("petite" "bigloo" "csi" "csi -hygienic" "gosh" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "mred -z" "mzscheme" "mzscheme -il r6rs" "mzscheme -il typed-scheme" "mzscheme -M errortrace" "mzscheme3m" "mzschemecgc" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/code/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
@@ -147,3 +148,23 @@
 (put 'syntax-rules+ 'scheme-indent-function 2)
 (put 'for-each 'scheme-indent-function 0)
 (put 'cond 'scheme-indent-function 0)
+
+(set-frame-parameter (selected-frame) 'alpha '(100 100))
+(add-to-list 'default-frame-alist '(alpha 100 100))
+(eval-when-compile (require 'cl))
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(85 50))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(idle-highlight ((t (:background "ghost white"))))
+ '(region ((t (:background "yellow")))))
