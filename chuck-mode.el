@@ -128,9 +128,34 @@
   (interactive)
   (run-chuck "--removeall"))
 
+(defun chuck-electric-open-block (n)
+  "Automatically indent after typing a }"
+   (interactive "p")
+   (self-insert-command n)
+   (insert "\n")
+   (insert "}")
+   (previous-line)
+   (end-of-line)
+   (insert "\n")
+   (indent-according-to-mode)
+   (next-line)
+   (indent-according-to-mode)
+   (previous-line)
+   (indent-according-to-mode))
+
+
+(defun chuck-electric-close-block (n)
+  "Automatically indent after typing a }"
+   (interactive "p")
+   (self-insert-command n)
+   (indent-according-to-mode)
+   (forward-char))
+
 ;; keymap for ChucK mode
 (defvar chuck-mode-map
   (let ((chuck-mode-map (make-keymap)))
+    (define-key chuck-mode-map (kbd "{") 'chuck-electric-open-block)
+    (define-key chuck-mode-map (kbd "}") 'chuck-electric-close-block)
     (define-key chuck-mode-map (kbd "<RET>") 'newline-and-indent)
 
     (define-key chuck-mode-map [menu-bar chuck]
