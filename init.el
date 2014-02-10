@@ -16,6 +16,7 @@
                       scala-mode
                       sml-mode
                       markdown-mode
+                      web-mode
                       rainbow-delimiters
                       undo-tree browse-kill-ring)
   "A list of packages to ensure are installed at launch.")
@@ -39,8 +40,11 @@
 ;(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
 (global-set-key (kbd "<C-tab>") 'indent-relative-maybe)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-;(setq-default c-basic-indent 2)
+(setq-default js-indent-level 2)
+(setq-default css-indent-offset 2)
+(setq-default c-basic-indent 2)
 ;(setq-default lisp-indent-offset 2)
 (setq visible-bell nil)
 
@@ -58,9 +62,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(proof-prog-name "/usr/local/bin/hoqtop")
+ '(safe-local-variable-values (quote ((eval let ((default-directory (locate-dominating-file buffer-file-name ".dir-locals.el"))) (make-local-variable (quote coq-prog-name)) (setq coq-prog-name (expand-file-name "../hoqtop"))) (eval progn (let ((coq-root-directory (when buffer-file-name (locate-dominating-file buffer-file-name ".dir-locals.el"))) (coq-project-find-file (and (boundp (quote coq-project-find-file)) coq-project-find-file))) (setq tags-file-name (concat coq-root-directory "TAGS") camldebug-command-name (concat coq-root-directory "dev/ocamldebug-coq")) (unless coq-project-find-file (setq compile-command (concat "make -C " coq-root-directory))) (when coq-project-find-file (setq default-directory coq-root-directory)))) (whitespace-line-column . 80) (lexical-binding . t))))
  '(scheme-program-name "petite"))
 
-(setq twelf-root "~/code/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
+(setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
@@ -168,3 +174,10 @@
  ;; If there is more than one, they won't work right.
  '(idle-highlight ((t (:background "ghost white"))))
  '(region ((t (:background "yellow")))))
+
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((js-mode "<script>" "</script>")
+                  (css-mode "<style" "</style>")))
+(setq mweb-filename-extensions '("html"))
+(multi-web-global-mode 1)
