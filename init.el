@@ -12,6 +12,7 @@
                       starter-kit-eshell
                       exec-path-from-shell
                       clojure-mode clojure-test-mode nrepl
+                      lua-mode
                       scheme-complete
                       scala-mode
                       sml-mode
@@ -46,7 +47,8 @@
 (setq-default css-indent-offset 2)
 (setq-default c-basic-indent 2)
 ;(setq-default lisp-indent-offset 2)
-(setq visible-bell nil)
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 (global-undo-tree-mode t)
 
@@ -54,6 +56,7 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
+(add-to-list 'auto-mode-alist '("\\.sbt\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.fun\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
 
