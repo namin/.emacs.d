@@ -11,7 +11,7 @@
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
                       starter-kit-eshell
                       exec-path-from-shell
-                      clojure-mode clojure-test-mode nrepl
+                      clojure-mode clojure-test-mode cider
                       lua-mode
                       scheme-complete
                       scala-mode
@@ -19,7 +19,8 @@
                       markdown-mode
                       web-mode
                       rainbow-delimiters
-                      undo-tree browse-kill-ring)
+                      undo-tree browse-kill-ring
+                      multi-web-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
