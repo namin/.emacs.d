@@ -53,13 +53,14 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Inconsolata 13")
+(set-default-font "Inconsolata 11")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.sbt\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.fun\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
+(add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -185,3 +186,12 @@
                   (css-mode "<style" "</style>")))
 (setq mweb-filename-extensions '("html"))
 (multi-web-global-mode 1)
+
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent yes-or-no-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent y-or-n-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
