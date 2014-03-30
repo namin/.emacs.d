@@ -16,6 +16,7 @@
                       scheme-complete
                       scala-mode
                       sml-mode
+                      haskell-mode
                       markdown-mode
                       web-mode
                       rainbow-delimiters
@@ -67,6 +68,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
  '(proof-prog-name "/usr/local/bin/hoqtop")
  '(safe-local-variable-values (quote ((eval let ((default-directory (locate-dominating-file buffer-file-name ".dir-locals.el"))) (make-local-variable (quote coq-prog-name)) (setq coq-prog-name (expand-file-name "../hoqtop"))) (eval progn (let ((coq-root-directory (when buffer-file-name (locate-dominating-file buffer-file-name ".dir-locals.el"))) (coq-project-find-file (and (boundp (quote coq-project-find-file)) coq-project-find-file))) (setq tags-file-name (concat coq-root-directory "TAGS") camldebug-command-name (concat coq-root-directory "dev/ocamldebug-coq")) (unless coq-project-find-file (setq compile-command (concat "make -C " coq-root-directory))) (when coq-project-find-file (setq default-directory coq-root-directory)))) (whitespace-line-column . 80) (lexical-binding . t))))
  '(scheme-program-name "petite"))
