@@ -74,6 +74,7 @@
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
+(setq dafny-root "~/local/plt/dafny/") (load (concat dafny-root "Util/Emacs/dafny-mode.el"))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
