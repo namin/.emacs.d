@@ -21,7 +21,8 @@
                       web-mode
                       rainbow-delimiters
                       undo-tree browse-kill-ring
-                      multi-web-mode)
+                      multi-web-mode
+                      misc-cmds)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -200,3 +201,4 @@
 (load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
 (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+(global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
