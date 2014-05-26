@@ -55,7 +55,7 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Inconsolata 11")
+(set-default-font "Inconsolata 15")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
@@ -70,6 +70,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
+ '(safe-local-variable-values (quote ((coq-prog-args "-emacs-U" "-I" "./ln/tlc") (coq-prog-args "-emacs-U" "-I" "metalib" "-I" "lib") (coq-prog-args "-emacs-U" "-I" "./tlc") (whitespace-line-column . 80) (lexical-binding . t))))
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
@@ -201,4 +202,8 @@
 (load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
 (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
 (global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
