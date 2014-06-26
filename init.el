@@ -17,6 +17,7 @@
                       scala-mode
                       sml-mode
                       haskell-mode
+                      tuareg
                       markdown-mode
                       web-mode
                       rainbow-delimiters
@@ -180,6 +181,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "dark blue"))))
+ '(font-lock-string-face ((t (:foreground "black"))))
  '(idle-highlight ((t (:background "ghost white"))))
  '(region ((t (:background "yellow")))))
 
@@ -207,3 +210,10 @@
                 (shell-command-to-string "agda-mode locate")))
 
 (global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
+
+;; OCaml
+(add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+(require 'ocp-indent)
