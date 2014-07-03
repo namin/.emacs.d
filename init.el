@@ -18,6 +18,7 @@
                       sml-mode
                       haskell-mode
                       tuareg
+                      racket-mode
                       markdown-mode
                       web-mode
                       rainbow-delimiters
