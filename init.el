@@ -218,3 +218,33 @@
         (shell-command-to-string "opam config var share"))
      "/emacs/site-lisp"))
 (require 'ocp-indent)
+
+;; quick hack to run a command on each save of a file
+;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
+
+(defun compile-on-save-cmd ()
+  (if (local-variable-p 'on-save-cmd)
+      (progn
+        (shell-command (buffer-local-value 'on-save-cmd (current-buffer)))
+        (message ""))
+    (let ((user-cmd (read-from-minibuffer "command? ")))
+      (if (eq 0 (shell-command user-cmd))
+          (progn
+            (setq-local on-save-cmd user-cmd)
+            (message "ok :)"))
+        (message "failed :(")))))
+
+(defun compile-on-save-start ()
+  (compile-on-save-cmd))
+
+(define-minor-mode compile-on-save-mode
+  "Minor mode to automatically call `recompile' whenever the
+current buffer is saved. When there is ongoing compilation,
+nothing happens."
+  :lighter " CoS"
+    (if compile-on-save-mode
+    (progn  (make-local-variable 'after-save-hook)
+            (add-hook 'after-save-hook 'compile-on-save-start nil t))
+    (progn
+      (kill-local-variable 'after-save-hook)
+      (kill-local-variable 'on-save-cmd))))
