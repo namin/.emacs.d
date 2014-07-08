@@ -203,7 +203,17 @@
   (let ((use-dialog-box nil))
     ad-do-it))
 
-(load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+(let
+    (
+     ;; mac os x via homebrew
+     (proof-general-loc1 "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+     ;; linux via mint 17
+     (proof-general-loc2 "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
+     )
+  (load-file (if (file-exists-p proof-general-loc1)
+                 proof-general-loc1
+               proof-general-loc2)))
+
 (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
 (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
 
