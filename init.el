@@ -164,6 +164,7 @@
 (put 'syntax-rules+ 'scheme-indent-function 2)
 (put 'for-each 'scheme-indent-function 0)
 (put 'cond 'scheme-indent-function 0)
+(put 'def+ 'scheme-indent-function 1)
 
 (set-frame-parameter (selected-frame) 'alpha '(100 100))
 (add-to-list 'default-frame-alist '(alpha 100 100))
