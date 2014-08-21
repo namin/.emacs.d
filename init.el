@@ -75,8 +75,8 @@
  '(safe-local-variable-values (quote ((coq-prog-args "-emacs-U" "-I" ".") (coq-prog-args "-emacs-U" "-I" "./ln/tlc") (coq-prog-args "-emacs-U" "-I" "metalib" "-I" "lib") (coq-prog-args "-emacs-U" "-I" "./tlc") (whitespace-line-column . 80) (lexical-binding . t))))
  '(scheme-program-name "petite"))
 
-(setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
-(setq dafny-root "~/local/plt/dafny/") (load (concat dafny-root "Util/Emacs/dafny-mode.el"))
+;; (setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
+;; (setq dafny-root "~/local/plt/dafny/") (load (concat dafny-root "Util/Emacs/dafny-mode.el"))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
@@ -204,19 +204,19 @@
   (let ((use-dialog-box nil))
     ad-do-it))
 
-(let
-    (
-     ;; mac os x via homebrew
-     (proof-general-loc1 "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-     ;; linux via mint 17
-     (proof-general-loc2 "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
-     )
-  (load-file (if (file-exists-p proof-general-loc1)
-                 proof-general-loc1
-               proof-general-loc2)))
+;; (let
+;;     (
+;;      ;; mac os x via homebrew
+;;      (proof-general-loc1 "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+;;      ;; linux via mint 17
+;;      (proof-general-loc2 "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
+;;      )
+;;   (load-file (if (file-exists-p proof-general-loc1)
+;;                  proof-general-loc1
+;;                proof-general-loc2)))
 
-(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
-(autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+;; (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+;; (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
 
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;              (shell-command-to-string "agda-mode locate")))
@@ -224,11 +224,11 @@
 (global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
 
 ;; OCaml
-(add-to-list 'load-path (concat
-     (replace-regexp-in-string "\n$" ""
-        (shell-command-to-string "opam config var share"))
-     "/emacs/site-lisp"))
-(require 'ocp-indent)
+;; (add-to-list 'load-path (concat
+;;                          (replace-regexp-in-string "\n$" ""
+;;                                                    (shell-command-to-string "opam config var share"))
+;;                          "/emacs/site-lisp"))
+;; (require 'ocp-indent)
 
 ;; quick hack to run a command on each save of a file
 ;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
