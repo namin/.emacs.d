@@ -224,10 +224,22 @@
 (global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
 
 ;; OCaml
-(add-to-list 'load-path (concat
-     (replace-regexp-in-string "\n$" ""
-        (shell-command-to-string "opam config var share"))
-     "/emacs/site-lisp"))
+(setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
+(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+
+;; Load merlin-mode
+(require 'merlin)
+
+;; Start merlin on ocaml files
+(add-hook 'tuareg-mode-hook 'merlin-mode t)
+(add-hook 'caml-mode-hook 'merlin-mode t)
+
+;; Enable auto-complete
+(setq merlin-use-auto-complete-mode 'easy)
+
+;; Use opam switch to lookup ocamlmerlin binary
+(setq merlin-command 'opam)
+
 (require 'ocp-indent)
 
 ;; quick hack to run a command on each save of a file
