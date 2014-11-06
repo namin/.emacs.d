@@ -14,7 +14,7 @@
                       clojure-mode clojure-test-mode cider
                       lua-mode
                       scheme-complete
-                      scala-mode
+                      scala-mode2 ;; ensime
                       sml-mode
                       haskell-mode
                       tuareg
