@@ -75,8 +75,14 @@
  '(safe-local-variable-values (quote ((coq-prog-args "-emacs-U" "-I" ".") (coq-prog-args "-emacs-U" "-I" "./ln/tlc") (coq-prog-args "-emacs-U" "-I" "metalib" "-I" "lib") (coq-prog-args "-emacs-U" "-I" "./tlc") (whitespace-line-column . 80) (lexical-binding . t))))
  '(scheme-program-name "petite"))
 
-(setq twelf-root "~/local/plt/twelf/") (load (concat twelf-root "emacs/twelf-init.el"))
-(setq dafny-root "~/local/plt/dafny/") (load (concat dafny-root "Util/Emacs/dafny-mode.el"))
+(setq twelf-root "~/local/plt/twelf/")
+(let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
+  (when (file-exists-p twelf-file)
+    (load twelf-file)))
+(setq dafny-root "~/local/plt/dafny/")
+(let ((dafny-file (concat dafny-root "Util/Emacs/dafny-mode.el")))
+  (when (file-exists-p dafny-file)
+    (load dafny-file)))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
@@ -211,12 +217,13 @@
      ;; linux via mint 17
      (proof-general-loc2 "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
      )
-  (load-file (if (file-exists-p proof-general-loc1)
-                 proof-general-loc1
-               proof-general-loc2)))
-
-(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
-(autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+  (when (or (file-exists-p proof-general-loc1) (file-exists-p proof-general-loc2)) 
+    (load-file (if (file-exists-p proof-general-loc1)
+                   proof-general-loc1
+                 proof-general-loc2))
+    (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+    (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+    ))
 
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;              (shell-command-to-string "agda-mode locate")))
@@ -226,6 +233,7 @@
 ;; OCaml
 
 ;; Add opam emacs directory to the load-path
+(when (executable-find "opam")
 (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
 
@@ -243,6 +251,7 @@
 (setq merlin-command 'opam)
 
 (require 'ocp-indent)
+)
 
 ;; quick hack to run a command on each save of a file
 ;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
