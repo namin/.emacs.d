@@ -13,6 +13,7 @@
                       exec-path-from-shell
                       clojure-mode clojure-test-mode cider
                       lua-mode
+                      sass-mode
                       scheme-complete
                       scala-mode2
                       sml-mode
