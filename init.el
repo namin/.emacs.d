@@ -14,7 +14,7 @@
                       clojure-mode clojure-test-mode cider
                       lua-mode
                       scheme-complete
-                      scala-mode2 ;; ensime
+                      scala-mode2
                       sml-mode
                       haskell-mode
                       tuareg
@@ -26,6 +26,9 @@
                       multi-web-mode
                       misc-cmds)
   "A list of packages to ensure are installed at launch.")
+
+(when window-system
+  (add-to-list 'my-packages 'ensime))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -228,7 +231,7 @@
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;              (shell-command-to-string "agda-mode locate")))
 
-(global-set-key (kbd "C-x C-a") 'revert-buffer-no-confirm)
+(global-set-key (kbd "C-x a") 'revert-buffer-no-confirm)
 
 ;; OCaml
 
@@ -282,3 +285,7 @@ nothing happens."
     (progn
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
+
+;; ensime for Scala
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
