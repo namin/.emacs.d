@@ -63,6 +63,7 @@
 
 (set-default-font "Monaco 15")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.dot\\'" . scala-mode))
 (add-to-list 'auto-mode-alist '("\\.sbt\\'" . scala-mode))
