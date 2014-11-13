@@ -28,7 +28,7 @@
                       misc-cmds)
   "A list of packages to ensure are installed at launch.")
 
-(when window-system
+(when (memq window-system '(mac ns)) ;; TODO
   (add-to-list 'my-packages 'ensime))
 
 (dolist (p my-packages)
