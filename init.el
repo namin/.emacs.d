@@ -284,7 +284,3 @@ nothing happens."
     (progn
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
-
-;; ensime for Scala
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
