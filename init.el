@@ -59,7 +59,6 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 15")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -74,9 +73,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
  '(safe-local-variable-values (quote ((coq-prog-args "-emacs-U" "-I" ".") (coq-prog-args "-emacs-U" "-I" "./ln/tlc") (coq-prog-args "-emacs-U" "-I" "metalib" "-I" "lib") (coq-prog-args "-emacs-U" "-I" "./tlc") (whitespace-line-column . 80) (lexical-binding . t))))
- '(scheme-program-name "petite"))
+ '(scheme-program-name "petite")
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 (setq twelf-root "~/local/plt/twelf/")
 (let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
@@ -187,16 +189,6 @@
     (set-frame-parameter nil 'alpha '(85 50))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "dark blue"))))
- '(font-lock-string-face ((t (:foreground "black"))))
- '(idle-highlight ((t (:background "ghost white"))))
- '(region ((t (:background "yellow")))))
-
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((js-mode "<script>" "</script>")
@@ -285,3 +277,14 @@ nothing happens."
     (progn
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 143 :width normal))))
+ '(font-lock-comment-face ((t (:foreground "dark blue"))))
+ '(font-lock-string-face ((t (:foreground "black"))))
+ '(idle-highlight ((t (:background "ghost white"))))
+ '(region ((t (:background "yellow")))))
