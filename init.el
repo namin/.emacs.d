@@ -21,6 +21,7 @@
                       tuareg
                       racket-mode
                       markdown-mode
+                      elm-mode
                       web-mode
                       rainbow-delimiters
                       undo-tree browse-kill-ring
