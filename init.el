@@ -16,6 +16,7 @@
                       sass-mode
                       scheme-complete
                       scala-mode2
+                      ensime
                       sml-mode
                       haskell-mode
                       tuareg
@@ -59,7 +60,7 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 15")
+(set-default-font "Monaco 22")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -285,3 +286,6 @@ nothing happens."
     (progn
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
+
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
