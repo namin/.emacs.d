@@ -172,6 +172,7 @@
 (put 'call-with-values 'scheme-indent-function 2)
 (put 'syntax-case 'scheme-indent-function 2)
 (put 'syntax-rules+ 'scheme-indent-function 2)
+(put 'extend-syntax 'scheme-indent-function 1)
 (put 'for-each 'scheme-indent-function 0)
 (put 'cond 'scheme-indent-function 0)
 (put 'def+ 'scheme-indent-function 1)
