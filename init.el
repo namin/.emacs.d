@@ -60,7 +60,7 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 22")
+(set-default-font "Monaco 20")
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -76,7 +76,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
- '(safe-local-variable-values (quote ((coq-prog-args "-emacs-U" "-I" ".") (coq-prog-args "-emacs-U" "-I" "./ln/tlc") (coq-prog-args "-emacs-U" "-I" "metalib" "-I" "lib") (coq-prog-args "-emacs-U" "-I" "./tlc") (whitespace-line-column . 80) (lexical-binding . t))))
+ ;; '(coq-prog-args '("-I" "../ln/tlc"))
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/local/plt/twelf/")
