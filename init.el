@@ -61,6 +61,7 @@
 (global-undo-tree-mode t)
 
 (set-default-font "Monaco 20")
+(add-to-list 'default-frame-alist '(font . "Monaco 20"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
