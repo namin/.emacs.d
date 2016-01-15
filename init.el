@@ -60,8 +60,8 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 20")
-(add-to-list 'default-frame-alist '(font . "Monaco 20"))
+(set-default-font "Monaco 11")
+(add-to-list 'default-frame-alist '(font . "Monaco 11"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -70,6 +70,7 @@
 (add-to-list 'auto-mode-alist '("\\.fun\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
+(add-to-list 'auto-mode-alist '("\\.blk\\'" . scheme-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -240,25 +241,18 @@
 ;; OCaml
 
 ;; Add opam emacs directory to the load-path
-(when (executable-find "opam")
 (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-
 ;; Load merlin-mode
 (require 'merlin)
-
 ;; Start merlin on ocaml files
 (add-hook 'tuareg-mode-hook 'merlin-mode t)
 (add-hook 'caml-mode-hook 'merlin-mode t)
-
 ;; Enable auto-complete
 (setq merlin-use-auto-complete-mode 'easy)
-
 ;; Use opam switch to lookup ocamlmerlin binary
 (setq merlin-command 'opam)
-
 (require 'ocp-indent)
-)
 
 ;; quick hack to run a command on each save of a file
 ;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
