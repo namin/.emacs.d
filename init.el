@@ -1,38 +1,42 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/") t)
+; list the packages you want
+(setq package-list '(starter-kit starter-kit-lisp starter-kit-bindings
+                     starter-kit-eshell
+		     exec-path-from-shell
+		     clojure-mode clojure-test-mode cider
+		     lua-mode
+		     sass-mode
+		     scheme-complete
+		     scala-mode2
+		     ensime
+		     sml-mode
+		     haskell-mode
+		     tuareg
+		     racket-mode
+		     markdown-mode
+		     elm-mode
+		     web-mode
+		     rainbow-delimiters
+		     undo-tree browse-kill-ring
+		     multi-web-mode
+		     misc-cmds))
+
+; list the repositories containing them
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+; activate all the packages (in particular autoloads)
 (package-initialize)
 
-(when (not package-archive-contents)
+; fetch the list of packages available
+(unless package-archive-contents
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
-                      starter-kit-eshell
-                      exec-path-from-shell
-                      clojure-mode clojure-test-mode cider
-                      lua-mode
-                      sass-mode
-                      scheme-complete
-                      scala-mode2
-                      ensime
-                      sml-mode
-                      haskell-mode
-                      tuareg
-                      racket-mode
-                      markdown-mode
-                      elm-mode
-                      web-mode
-                      rainbow-delimiters
-                      undo-tree browse-kill-ring
-                      multi-web-mode
-                      misc-cmds)
-  "A list of packages to ensure are installed at launch.")
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
