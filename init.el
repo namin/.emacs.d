@@ -14,6 +14,7 @@
 		     racket-mode
 		     markdown-mode
 		     elm-mode
+		     fstar-mode
 		     web-mode
 		     rainbow-delimiters
 		     undo-tree browse-kill-ring
@@ -58,6 +59,7 @@
 (setq-default js-indent-level 2)
 (setq-default css-indent-offset 2)
 (setq-default c-basic-indent 2)
+(setq-default sml-indent-level 2)
 ;(setq-default lisp-indent-offset 2)
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
@@ -235,6 +237,7 @@
                  proof-general-loc2))
     (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
     (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+    (add-hook 'proof-ready-for-assistant-hook (lambda () (show-paren-mode 0)))
     ))
 
 ;; (load-file (let ((coding-system-for-read 'utf-8))
