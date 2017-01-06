@@ -227,7 +227,7 @@
 (let
     (
      ;; mac os x via homebrew
-     (proof-general-loc1 "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+     (proof-general-loc1 "/usr/local/share/emacs/site-lisp/proof-general/generic/proof-site.el")
      ;; linux via mint 17
      (proof-general-loc2 "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
      )
