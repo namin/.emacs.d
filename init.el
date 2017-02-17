@@ -84,7 +84,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
- ;; '(coq-prog-args '("-I" "../ln/tlc"))
+ '(package-selected-packages
+   (quote
+    (unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/local/plt/twelf/")
