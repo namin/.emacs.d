@@ -295,3 +295,7 @@ nothing happens."
 
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
+(require 'dafny-mode)
+(require 'boogie-mode)
