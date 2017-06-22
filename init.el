@@ -87,6 +87,11 @@
  '(package-selected-packages
    (quote
     (unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
+ '(safe-local-variable-values
+   (quote
+    ((TeX-master . "report")
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
  '(scheme-program-name "petite"))
 
 (setq twelf-root "~/local/plt/twelf/")
