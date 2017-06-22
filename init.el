@@ -92,7 +92,7 @@
     ((TeX-master . "report")
      (whitespace-line-column . 80)
      (lexical-binding . t))))
- '(scheme-program-name "petite"))
+ '(scheme-program-name "scheme"))
 
 (setq twelf-root "~/local/plt/twelf/")
 (let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
