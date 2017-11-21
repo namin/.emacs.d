@@ -89,7 +89,8 @@
     (unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
  '(safe-local-variable-values
    (quote
-    ((TeX-master . "report")
+    ((TeX-master . t)
+     (TeX-master . "report")
      (whitespace-line-column . 80)
      (lexical-binding . t))))
  '(scheme-program-name "scheme"))
@@ -258,15 +259,15 @@
 (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
 ;; Load merlin-mode
-(require 'merlin)
+;(require 'merlin)
 ;; Start merlin on ocaml files
-(add-hook 'tuareg-mode-hook 'merlin-mode t)
-(add-hook 'caml-mode-hook 'merlin-mode t)
+;(add-hook 'tuareg-mode-hook 'merlin-mode t)
+;(add-hook 'caml-mode-hook 'merlin-mode t)
 ;; Enable auto-complete
-(setq merlin-use-auto-complete-mode 'easy)
+;(setq merlin-use-auto-complete-mode 'easy)
 ;; Use opam switch to lookup ocamlmerlin binary
-(setq merlin-command 'opam)
-(require 'ocp-indent)
+;(setq merlin-command 'opam)
+;(require 'ocp-indent)
 
 ;; quick hack to run a command on each save of a file
 ;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
