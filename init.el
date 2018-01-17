@@ -66,8 +66,8 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 13")
-(add-to-list 'default-frame-alist '(font . "Monaco 13"))
+(set-default-font "Monaco 17")
+(add-to-list 'default-frame-alist '(font . "Monaco 17"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -93,7 +93,8 @@
      (TeX-master . "report")
      (whitespace-line-column . 80)
      (lexical-binding . t))))
- '(scheme-program-name "scheme"))
+ '(scheme-program-name "scheme")
+ '(tuareg-support-metaocaml t))
 
 (setq twelf-root "~/local/plt/twelf/")
 (let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
@@ -253,22 +254,6 @@
 
 (global-set-key (kbd "C-x a") 'revert-buffer-no-confirm)
 
-;; OCaml
-
-;; Add opam emacs directory to the load-path
-(setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
-(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-;; Load merlin-mode
-;(require 'merlin)
-;; Start merlin on ocaml files
-;(add-hook 'tuareg-mode-hook 'merlin-mode t)
-;(add-hook 'caml-mode-hook 'merlin-mode t)
-;; Enable auto-complete
-;(setq merlin-use-auto-complete-mode 'easy)
-;; Use opam switch to lookup ocamlmerlin binary
-;(setq merlin-command 'opam)
-;(require 'ocp-indent)
-
 ;; quick hack to run a command on each save of a file
 ;; adapted from http://rtime.felk.cvut.cz/~sojka/blog/compile-on-save/
 
@@ -305,3 +290,7 @@ nothing happens."
 (add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
 (require 'dafny-mode)
 (require 'boogie-mode)
+
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
