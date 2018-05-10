@@ -6,6 +6,7 @@
 		     lua-mode
 		     sass-mode
 		     scheme-complete
+         racket-mode
 		     scala-mode2
 		     ensime
 		     sml-mode
