@@ -6,7 +6,6 @@
 		     lua-mode
 		     sass-mode
 		     scheme-complete
-		     scala-mode2
 		     ensime
 		     sml-mode
 		     haskell-mode
@@ -18,8 +17,7 @@
 		     web-mode
 		     rainbow-delimiters
 		     undo-tree browse-kill-ring
-		     multi-web-mode
-		     misc-cmds))
+		     multi-web-mode))
 
 ; list the repositories containing them
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -96,15 +94,6 @@
  '(scheme-program-name "scheme")
  '(tuareg-support-metaocaml t))
 
-(setq twelf-root "~/local/plt/twelf/")
-(let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
-  (when (file-exists-p twelf-file)
-    (load twelf-file)))
-(setq dafny-root "~/local/plt/dafny/")
-(let ((dafny-file (concat dafny-root "Util/Emacs/dafny-mode.el")))
-  (when (file-exists-p dafny-file)
-    (load dafny-file)))
-
 (defun run-mechanics-scheme ()
   "Runs scmutils"
   (interactive)
@@ -113,9 +102,6 @@
 
 (remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;(add-to-list 'load-path "~/code/zic/Tidal")
-;(require 'tidal)
 
 (load-file "~/.emacs.d/chuck-mode.el")
 (require 'chuck-mode)
@@ -286,10 +272,6 @@ nothing happens."
 
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
-(require 'dafny-mode)
-(require 'boogie-mode)
 
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
