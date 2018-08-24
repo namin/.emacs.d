@@ -237,7 +237,9 @@
 
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;              (shell-command-to-string "agda-mode locate")))
-
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
 (global-set-key (kbd "C-x a") 'revert-buffer-no-confirm)
 
 ;; quick hack to run a command on each save of a file
