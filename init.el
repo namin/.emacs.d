@@ -51,6 +51,8 @@
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 ;(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
+(add-hook 'racket-mode-hook #'enable-paredit-mode)
+
 (global-set-key (kbd "<C-tab>") 'indent-relative-maybe)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -64,8 +66,9 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 17")
-(add-to-list 'default-frame-alist '(font . "Monaco 17"))
+(set-default-font "Monaco 18")
+(add-to-list 'default-frame-alist '(font . "Monaco 18"))
+(add-to-list 'auto-mode-alist '("\\.smt\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -75,6 +78,7 @@
 (add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.blk\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -91,8 +95,13 @@
      (TeX-master . "report")
      (whitespace-line-column . 80)
      (lexical-binding . t))))
- '(scheme-program-name "scheme")
+ '(scheme-program-name "chez")
+ '(racket-program "/Users/namin/local/bin/racket")
  '(tuareg-support-metaocaml t))
+
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
@@ -272,8 +281,8 @@ nothing happens."
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
 
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;(require 'ensime)
+;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
