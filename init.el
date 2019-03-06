@@ -6,21 +6,19 @@
 		     lua-mode
 		     sass-mode
 		     scheme-complete
-         racket-mode
+                     racket-mode
 		     scala-mode2
 		     ensime
 		     sml-mode
 		     haskell-mode
 		     tuareg
-		     racket-mode
 		     markdown-mode
 		     elm-mode
 		     fstar-mode
 		     web-mode
 		     rainbow-delimiters
 		     undo-tree browse-kill-ring
-		     multi-web-mode
-		     misc-cmds))
+		     multi-web-mode))
 
 ; list the repositories containing them
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -54,6 +52,8 @@
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 ;(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
+(add-hook 'racket-mode-hook #'enable-paredit-mode)
+
 (global-set-key (kbd "<C-tab>") 'indent-relative-maybe)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -67,8 +67,9 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 17")
-(add-to-list 'default-frame-alist '(font . "Monaco 17"))
+(set-default-font "Monaco 13")
+(add-to-list 'default-frame-alist '(font . "Monaco 13"))
+(add-to-list 'auto-mode-alist '("\\.smt\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -78,6 +79,7 @@
 (add-to-list 'auto-mode-alist '("\\.sig\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
 (add-to-list 'auto-mode-alist '("\\.blk\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -87,24 +89,22 @@
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
  '(package-selected-packages
    (quote
-    (unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
+    (virtualenv proof-general anaconda-mode unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
+ '(python-indent-offset 2)
+ '(python-shell-exec-path (quote ("/Users/namin/anaconda3/bin")))
+ '(racket-program "/Users/namin/local/bin/racket")
  '(safe-local-variable-values
    (quote
     ((TeX-master . t)
      (TeX-master . "report")
      (whitespace-line-column . 80)
      (lexical-binding . t))))
- '(scheme-program-name "scheme")
+ '(scheme-program-name "chez")
  '(tuareg-support-metaocaml t))
 
-(setq twelf-root "~/local/plt/twelf/")
-(let ((twelf-file (concat twelf-root "emacs/twelf-init.el")))
-  (when (file-exists-p twelf-file)
-    (load twelf-file)))
-(setq dafny-root "~/local/plt/dafny/")
-(let ((dafny-file (concat dafny-root "Util/Emacs/dafny-mode.el")))
-  (when (file-exists-p dafny-file)
-    (load dafny-file)))
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
 
 (defun run-mechanics-scheme ()
   "Runs scmutils"
@@ -114,9 +114,6 @@
 
 (remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;(add-to-list 'load-path "~/code/zic/Tidal")
-;(require 'tidal)
 
 (load-file "~/.emacs.d/chuck-mode.el")
 (require 'chuck-mode)
@@ -252,7 +249,9 @@
 
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;              (shell-command-to-string "agda-mode locate")))
-
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
 (global-set-key (kbd "C-x a") 'revert-buffer-no-confirm)
 
 ;; quick hack to run a command on each save of a file
@@ -285,13 +284,13 @@ nothing happens."
       (kill-local-variable 'after-save-hook)
       (kill-local-variable 'on-save-cmd))))
 
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
-(require 'dafny-mode)
-(require 'boogie-mode)
+;(require 'ensime)
+;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+
+;; TODO: temp
+;; (setq python-shell-interpreter "/Users/namin/envio/bin/python"
+;;       python-shell-interpreter-args "-i")
