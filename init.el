@@ -299,3 +299,11 @@ nothing happens."
 ;; TODO: temp
 ;; (setq python-shell-interpreter "/Users/namin/envio/bin/python"
 ;;       python-shell-interpreter-args "-i")
+
+; Allegro Common Lisp
+(push "/Applications/AllegroCLExpress.app/Contents/Resources/eli" load-path)
+(load "fi-site-init.el")
+(setq fi:common-lisp-image-name
+      "/Applications/AllegroCLExpress.app/Contents/Resources/alisp")
+(setq fi:common-lisp-image-file
+      "/Applications/AllegroCLExpress.app/Contents/Resources/alisp.dxl")
