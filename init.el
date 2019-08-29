@@ -7,7 +7,6 @@
 		     sass-mode
 		     scheme-complete
                      racket-mode
-		     scala-mode2
 		     ensime
 		     sml-mode
 		     haskell-mode
@@ -110,6 +109,12 @@
   "Runs scmutils"
   (interactive)
   (run-scheme "~/.emacs.d/mechanics-emacs")
+  (process-kill-without-query (get-process "scheme")))
+
+(defun run-mit-scheme ()
+  "Runs MIT Scheme"
+  (interactive)
+  (run-scheme "/Applications/MITScheme.app/Contents/Resources/mit-scheme")
   (process-kill-without-query (get-process "scheme")))
 
 (remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
@@ -294,3 +299,11 @@ nothing happens."
 ;; TODO: temp
 ;; (setq python-shell-interpreter "/Users/namin/envio/bin/python"
 ;;       python-shell-interpreter-args "-i")
+
+; Allegro Common Lisp
+(push "/Applications/AllegroCLExpress.app/Contents/Resources/eli" load-path)
+(load "fi-site-init.el")
+(setq fi:common-lisp-image-name
+      "/Applications/AllegroCLExpress.app/Contents/Resources/alisp")
+(setq fi:common-lisp-image-file
+      "/Applications/AllegroCLExpress.app/Contents/Resources/alisp.dxl")
