@@ -89,7 +89,7 @@
  '(haskell-mode-hook (quote (turn-on-haskell-indentation)))
  '(package-selected-packages
    (quote
-    (virtualenv proof-general anaconda-mode unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
+    (rust-mode virtualenv proof-general anaconda-mode unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
  '(python-indent-offset 2)
  '(python-shell-exec-path (quote ("/Users/namin/anaconda3/bin")))
  '(racket-program "/Users/namin/local/bin/racket")
