@@ -307,3 +307,13 @@ nothing happens."
       "/Applications/AllegroCLExpress.app/Contents/Resources/alisp")
 (setq fi:common-lisp-image-file
       "/Applications/AllegroCLExpress.app/Contents/Resources/alisp.dxl")
+
+(defun my-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955) ; λ
+          )))
+
+(add-hook 'text-mode-hook 'my-pretty-lambda)
+(global-prettify-symbols-mode 1)
