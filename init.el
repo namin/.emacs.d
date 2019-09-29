@@ -307,6 +307,8 @@ nothing happens."
       "/Applications/AllegroCLExpress.app/Contents/Resources/alisp")
 (setq fi:common-lisp-image-file
       "/Applications/AllegroCLExpress.app/Contents/Resources/alisp.dxl")
+;; SBCL
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 (defun my-pretty-lambda ()
   "make some word or string show as pretty Unicode symbols"
