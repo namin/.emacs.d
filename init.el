@@ -66,8 +66,10 @@
 
 (global-undo-tree-mode t)
 
-(set-default-font "Monaco 13")
-(add-to-list 'default-frame-alist '(font . "Monaco 13"))
+(set-default-font "Monaco 14")
+(add-to-list 'default-frame-alist '(font . "Monaco 14"))
+;;(set-default-font "Monaco 22")
+;;(add-to-list 'default-frame-alist '(font . "Monaco 22"))
 (add-to-list 'auto-mode-alist '("\\.smt\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
@@ -91,7 +93,7 @@
     (rust-mode virtualenv proof-general anaconda-mode unicode-fonts flycheck f dash-functional web-mode undo-tree tuareg starter-kit-lisp starter-kit-eshell starter-kit-bindings sml-mode scheme-complete sass-mode rainbow-delimiters racket-mode multi-web-mode misc-cmds markdown-mode lua-mode haskell-mode go-mode fstar-mode exec-path-from-shell ensime elm-mode clojure-test-mode cider browse-kill-ring)))
  '(python-indent-offset 2)
  '(python-shell-exec-path (quote ("/Users/namin/anaconda3/bin")))
- '(racket-program "/Users/namin/local/bin/racket")
+ '(racket-program "racket")
  '(safe-local-variable-values
    (quote
     ((TeX-master . t)

@@ -1,27 +1,34 @@
-;; ## added by OPAM user-setup for emacs / base ## 2cfdcafda6d58f1dfe93a46e434ff502 ## you can edit, but keep this line
+;; ## added by OPAM user-setup for emacs / base ## cfd3c9b7837c85cffd0c59de521990f0 ## you can edit, but keep this line
 (provide 'opam-user-setup)
 
 ;; Base configuration for OPAM
 
 (defun opam-shell-command-to-string (command)
   "Similar to shell-command-to-string, but returns nil unless the process
-  returned 0 (shell-command-to-string ignores return value)"
+  returned 0, and ignores stderr (shell-command-to-string ignores return value)"
   (let* ((return-value 0)
          (return-string
           (with-output-to-string
             (setq return-value
                   (with-current-buffer standard-output
-                    (process-file shell-file-name nil t nil
+                    (process-file shell-file-name nil '(t nil) nil
                                   shell-command-switch command))))))
     (if (= return-value 0) return-string nil)))
 
 (defun opam-update-env (switch)
   "Update the environment to follow current OPAM switch configuration"
-  (interactive "sopam switch (empty to keep current setting): ")
+  (interactive
+   (list
+    (let ((default
+            (car (split-string (opam-shell-command-to-string "opam switch show --safe")))))
+      (completing-read
+       (concat "opam switch (" default "): ")
+       (split-string (opam-shell-command-to-string "opam switch list -s --safe") "\n")
+       nil t nil nil default))))
   (let* ((switch-arg (if (= 0 (length switch)) "" (concat "--switch " switch)))
-         (command (concat "opam config env --sexp " switch-arg))
+         (command (concat "opam config env --safe --sexp " switch-arg))
          (env (opam-shell-command-to-string command)))
-    (when env
+    (when (and env (not (string= env "")))
       (dolist (var (car (read-from-string env)))
         (setenv (car var) (cadr var))
         (when (string= (car var) "PATH")
@@ -29,8 +36,8 @@
 
 (opam-update-env nil)
 
-(setq opam-share
-  (let ((reply (opam-shell-command-to-string "opam config var share")))
+(defvar opam-share
+  (let ((reply (opam-shell-command-to-string "opam config var share --safe")))
     (when reply (substring reply 0 -1))))
 
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
@@ -88,7 +95,7 @@
   (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
   (add-hook 'tuareg-mode-hook 'utop-minor-mode))
 
-(setq opam-tools
+(defvar opam-tools
   '(("tuareg" . opam-setup-tuareg)
     ("ocp-indent" . opam-setup-ocp-indent)
     ("ocp-index" . opam-setup-ocp-index)
@@ -103,7 +110,7 @@
        (reply (opam-shell-command-to-string command-string)))
     (when reply (split-string reply))))
 
-(setq opam-tools-installed (opam-detect-installed-tools))
+(defvar opam-tools-installed (opam-detect-installed-tools))
 
 (defun opam-auto-tools-setup ()
   (interactive)
@@ -113,12 +120,12 @@
 
 (opam-auto-tools-setup)
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
-;; ## added by OPAM user-setup for emacs / ocp-indent ## 59030a667260de56f49d28892859664f ## you can edit, but keep this line
+;; ## added by OPAM user-setup for emacs / ocp-indent ## c6c8eedfd7b7bda822a2eee81c21c1eb ## you can edit, but keep this line
 ;; Load ocp-indent from its original switch when not found in current switch
 (when (not (assoc "ocp-indent" opam-tools-installed))
-  (autoload 'ocp-setup-indent "/Users/namin/.opam/4.06.0/share/emacs/site-lisp/ocp-indent.el" "Improved indentation for Tuareg mode")
-  (autoload 'ocp-indent-caml-mode-setup "/Users/namin/.opam/4.06.0/share/emacs/site-lisp/ocp-indent.el" "Improved indentation for Caml mode")
+  (autoload 'ocp-setup-indent "/Users/namin/.opam/4.04.2/share/emacs/site-lisp/ocp-indent.el" "Improved indentation for Tuareg mode")
+  (autoload 'ocp-indent-caml-mode-setup "/Users/namin/.opam/4.04.2/share/emacs/site-lisp/ocp-indent.el" "Improved indentation for Caml mode")
   (add-hook 'tuareg-mode-hook 'ocp-setup-indent t)
   (add-hook 'caml-mode-hook 'ocp-indent-caml-mode-setup  t)
-  (setq ocp-indent-path "/Users/namin/.opam/4.06.0/bin/ocp-indent"))
+  (setq ocp-indent-path "/Users/namin/.opam/4.04.2/bin/ocp-indent"))
 ;; ## end of OPAM user-setup addition for emacs / ocp-indent ## keep this line
