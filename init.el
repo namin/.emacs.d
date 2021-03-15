@@ -12,25 +12,34 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(safe-local-variable-values '((Syntax . Common-lisp)))
- '(scheme-program-name "racket"))
+ '(scheme-program-name "racket")
+ '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+)
 
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+(add-to-list 'default-frame-alist '(font . "Monaco 18"))
+
+;;(setq exec-path-from-shell-check-startup-files nil)
+;; (when (memq window-system '(mac ns x))
+;;   (exec-path-from-shell-initialize))
+
+(defun my-exec-path-from-shell-initialize ()
+     (when (memq window-system '(mac ns x))
+       (exec-path-from-shell-initialize)))
+
+(use-package exec-path-from-shell
+  :init
+  (add-hook 'after-init-hook 'my-exec-path-from-shell-initialize))
 
 (setq-default indent-tabs-mode nil)
 
 (global-undo-tree-mode)
-
-;;(set-default-font "Monaco 17")
-(add-to-list 'default-frame-alist '(font . "Monaco 17"))
 
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
 
@@ -44,11 +53,21 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-(require 'smartparens-config)
-(show-smartparens-global-mode +1)
-(smartparens-global-mode t)
+;;(require 'smartparens-config)
+;;(show-smartparens-global-mode +1)
+;;(smartparens-global-mode t)
+
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(global-company-mode t)
+
+(progn
+  (highlight-parentheses-mode)
+  (global-highlight-parentheses-mode))
 
 (put 'downcase-region 'disabled nil)
+
+(show-paren-mode 1)
 
 ;; slime
 
@@ -79,3 +98,110 @@
   "Runs Chez Scheme"
   (interactive)
   (run-scheme "chez"))
+
+(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+(setq auto-mode-alist 
+        (append '(("\\.ml[ily]?$" . tuareg-mode)
+	          ("\\.topml$" . tuareg-mode))
+                auto-mode-alist))
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+
+(defun my-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955) ; λ
+          )))
+
+(add-hook 'text-mode-hook 'my-pretty-lambda)
+(global-prettify-symbols-mode 1)
+
+
+(put 'generate-verify 'scheme-indent-function 1)
+(put 'tabled 'scheme-indent-function 1)
+(put 'with-mutex 'scheme-indent-function 1)
+(put 'trace-lambda 'scheme-indent-function 1)
+(put 'lambdae 'scheme-indent-function 1)
+(put 'lambdaw 'scheme-indent-function 1)
+(put 'lambda-w 'scheme-indent-function 1)
+(put 'timed-lambda 'scheme-indent-function 1)
+(put 'ulambda 'scheme-indent-function 1)
+(put 'lambda-e 'scheme-indent-function 1)
+(put 'lambda-a 'scheme-indent-function 1)
+(put 'lambda-u 'scheme-indent-function 1)
+(put 'tlambda 'scheme-indent-function 1)
+(put 'lambdaf@ 'scheme-indent-function 1)
+(put 'lambdag@ 'scheme-indent-function 1)
+(put 'fresh 'scheme-indent-function 1)
+(put 'eigen 'scheme-indent-function 1)
+(put 'exists 'scheme-indent-function 1)
+(put 'exist 'scheme-indent-function 1)
+(put 'nom 'scheme-indent-function 1)
+(put 'run 'scheme-indent-function 2)
+(put 'case-inf 'scheme-indent-function 1)
+(put 'letcc 'scheme-indent-function 1)
+(put 'let-tie 'scheme-indent-function 1)
+(put 'conde 'scheme-indent-function 0)
+(put 'condp 'scheme-indent-function 0)
+(put 'condq 'scheme-indent-function 0)
+(put 'conda 'scheme-indent-function 0)
+(put 'condu 'scheme-indent-function 0)
+(put 'test 'scheme-indent-function 1)
+(put 'test-genny 'scheme-indent-function 1)
+(put 'test-unify 'scheme-indent-function 1)
+(put 'test-check 'scheme-indent-function 1)
+(put 'test-divergence 'scheme-indent-function 1)
+(put 'make-engine 'scheme-indent-function 0)
+(put 'run-prob* 'scheme-indent-function 1)
+(put 'run-prob 'scheme-indent-function 1)
+(put 'run* 'scheme-indent-function 1)
+(put 'run1 'scheme-indent-function 1)
+(put 'run2 'scheme-indent-function 1)
+(put 'run3 'scheme-indent-function 1)
+(put 'run4 'scheme-indent-function 1)
+(put 'run5 'scheme-indent-function 1)
+(put 'run6 'scheme-indent-function 1)
+(put 'run7 'scheme-indent-function 1)
+(put 'run8 'scheme-indent-function 1)
+(put 'run9 'scheme-indent-function 1)
+(put 'run10 'scheme-indent-function 1)
+(put 'run11 'scheme-indent-function 1)
+(put 'run12 'scheme-indent-function 1)
+(put 'run13 'scheme-indent-function 1)
+(put 'run15 'scheme-indent-function 1)
+(put 'run22 'scheme-indent-function 1)
+(put 'run34 'scheme-indent-function 1)
+(put 'project 'scheme-indent-function 1)
+(put 'match 'scheme-indent-function 1)
+(put 'pmatch 'scheme-indent-function 1)
+(put 'umatch 'scheme-indent-function 1)
+(put 'matche 'scheme-indent-function 1)
+(put 'match-e 'scheme-indent-function 1)
+(put 'match-a 'scheme-indent-function 1)
+(put 'match-u 'scheme-indent-function 1)
+(put 'union-case 'scheme-indent-function 2)
+(put 'cases 'scheme-indent-function 1)
+(put 'let-values 'scheme-indent-function 1)
+(put 'mv-let 'scheme-indent-function 1)
+(put 'call-with-values 'scheme-indent-function 2)
+(put 'syntax-case 'scheme-indent-function 2)
+(put 'syntax-rules+ 'scheme-indent-function 2)
+(put 'extend-syntax 'scheme-indent-function 1)
+(put 'curry 'scheme-indent-function 1)
+(put 'for-each 'scheme-indent-function 0)
+(put 'cond 'scheme-indent-function 0)
+(put 'def+ 'scheme-indent-function 1)
+
+(set-frame-parameter (selected-frame) 'alpha '(100 100))
+(add-to-list 'default-frame-alist '(alpha 100 100))
+(eval-when-compile (require 'cl))
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(85 50))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
