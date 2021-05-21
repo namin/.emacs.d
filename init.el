@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(safe-local-variable-values '((Syntax . Common-lisp)))
  '(scheme-program-name "racket")
  '(show-paren-mode t))
@@ -21,7 +21,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 
 (add-to-list 'default-frame-alist '(font . "Monaco 18"))
 
@@ -38,6 +38,7 @@
   (add-hook 'after-init-hook 'my-exec-path-from-shell-initialize))
 
 (setq-default indent-tabs-mode nil)
+(setq tab-width 4)
 
 (global-undo-tree-mode)
 
@@ -100,9 +101,9 @@
   (run-scheme "chez"))
 
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
-(setq auto-mode-alist 
+(setq auto-mode-alist
         (append '(("\\.ml[ily]?$" . tuareg-mode)
-	          ("\\.topml$" . tuareg-mode))
+                  ("\\.topml$" . tuareg-mode))
                 auto-mode-alist))
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
@@ -118,7 +119,11 @@
 (add-hook 'text-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 
-
+(add-to-list 'auto-mode-alist '("\\.bl\\'" . scheme-mode))
+(put 'run-staged 'scheme-indent-function 2)
+(put 'delta 'scheme-indent-function 1)
+(put 'lambda-reflect 'scheme-indent-function 1)
+(put 'common-define 'scheme-indent-function 1)
 (put 'generate-verify 'scheme-indent-function 1)
 (put 'tabled 'scheme-indent-function 1)
 (put 'with-mutex 'scheme-indent-function 1)
@@ -203,5 +208,25 @@
        (cadr (frame-parameter nil 'alpha))
        100)
       (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(85 50))))
+    (set-frame-parameter nil 'alpha '(70 40))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
+
+(load "~/.emacs.d/scribble.el")
+
+;;(setq twelf-root "/Users/namin/code/152/twelf/")
+;;(load (concat twelf-root "emacs/twelf-init.el"))
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)))
+(put 'upcase-region 'disabled nil)
+
+(setq proof-splash-seen t)
+(setq proof-three-window-mode-policy 'hybrid)
+
+(autoload 'asm86-mode "/Users/namin/.emacs.d/asm86-mode.elc")
+(setq auto-mode-alist
+    (append '(("\\.asm\\'" . asm86-mode) ("\\.inc\\'" . asm86-mode))
+    auto-mode-alist))
