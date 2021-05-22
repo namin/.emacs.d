@@ -73,7 +73,7 @@
 ;; slime
 
 ;; update this path to the correct location.
-(setq *slime-path* "~/.emacs.d/elpa/slime-20200810.224")
+(setq *slime-path* "~/.emacs.d/elpa/slime-20210512.1220")
 (add-to-list 'load-path *slime-path*)
 (require 'slime-autoloads)
 
