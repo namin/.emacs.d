@@ -201,7 +201,7 @@
 
 (set-frame-parameter (selected-frame) 'alpha '(100 100))
 (add-to-list 'default-frame-alist '(alpha 100 100))
-(eval-when-compile (require 'cl))
+;;(eval-when-compile (require 'cl))
 (defun toggle-transparency ()
   (interactive)
   (if (/=
