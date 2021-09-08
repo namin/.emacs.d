@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(safe-local-variable-values '((Syntax . Common-lisp)))
  '(scheme-program-name "racket")
  '(show-paren-mode t))
@@ -106,7 +106,7 @@
                   ("\\.topml$" . tuareg-mode))
                 auto-mode-alist))
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
 
 (defun my-pretty-lambda ()
@@ -119,8 +119,12 @@
 (add-hook 'text-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 
+(add-to-list 'auto-mode-alist '("\\.blk\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.bl\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.brn\\'" . scheme-mode))
 (put 'run-staged 'scheme-indent-function 2)
+(put 'meaning 'scheme-indent-function 1)
+(put 'set! 'scheme-indent-function 1)
 (put 'delta 'scheme-indent-function 1)
 (put 'lambda-reflect 'scheme-indent-function 1)
 (put 'common-define 'scheme-indent-function 1)
