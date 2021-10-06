@@ -23,7 +23,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(add-to-list 'default-frame-alist '(font . "Monaco 18"))
+(add-to-list 'default-frame-alist '(font . "Monaco 17"))
 
 ;;(setq exec-path-from-shell-check-startup-files nil)
 ;; (when (memq window-system '(mac ns x))
@@ -83,9 +83,15 @@
     (slime-setup '(slime-fancy slime-banner))
     (setq slime-complete-symbol*-fancy t)
     (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
-(setq inferior-lisp-program "alisp")
+;;(setq inferior-lisp-program "alisp")
 ;;(setq inferior-lisp-program "/Applications/AllegroCL64express.app/Contents/Resources/allegro-express")
 
+(use-package slime
+  :init
+  (global-set-key (kbd "C-c z") 'slime-repl)
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  (add-to-list 'slime-contribs 'slime-repl))
 
 (setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
 (pyvenv-mode 1)
@@ -234,3 +240,14 @@
 (setq auto-mode-alist
     (append '(("\\.asm\\'" . asm86-mode) ("\\.inc\\'" . asm86-mode))
     auto-mode-alist))
+
+(setq ido-enable-flex-matching t
+      ido-auto-merge-work-directories-length -1
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-everywhere t
+      ido-default-buffer-method 'selected-window)
+(ido-mode 1)
+(put 'ido-exit-minibuffer 'disabled nil)
+(when (require 'ido-ubiquitous nil t)
+  (ido-ubiquitous-mode 1))
