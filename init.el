@@ -43,6 +43,7 @@
 (global-undo-tree-mode)
 
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.lurk\\'" . scheme-mode))
 
 (autoload 'enable-paredit-mode "paredit"
   "Turn on pseudo-structural editing of Lisp code."
