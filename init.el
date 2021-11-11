@@ -129,6 +129,7 @@
 (add-to-list 'auto-mode-alist '("\\.bl\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.brn\\'" . scheme-mode))
 (put 'run-staged 'scheme-indent-function 2)
+(put 'run-staged* 'scheme-indent-function 1)
 (put 'meaning 'scheme-indent-function 1)
 (put 'set! 'scheme-indent-function 1)
 (put 'delta 'scheme-indent-function 1)
