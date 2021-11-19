@@ -96,6 +96,7 @@
 
 (setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
 (pyvenv-mode 1)
+(custom-set-variables '(pyvenv-workon ".."))
 
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
