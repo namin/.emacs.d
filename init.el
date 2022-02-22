@@ -12,7 +12,8 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+ '(pyvenv-workon "..")
  '(safe-local-variable-values '((Syntax . Common-lisp)))
  '(scheme-program-name "racket")
  '(show-paren-mode t))
@@ -96,7 +97,7 @@
 
 (setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
 (pyvenv-mode 1)
-(custom-set-variables '(pyvenv-workon ".."))
+
 
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
@@ -113,9 +114,6 @@
         (append '(("\\.ml[ily]?$" . tuareg-mode)
                   ("\\.topml$" . tuareg-mode))
                 auto-mode-alist))
-;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
-;; ## end of OPAM user-setup addition for emacs / base ## keep this line
 
 (defun my-pretty-lambda ()
   "make some word or string show as pretty Unicode symbols"
@@ -272,3 +270,7 @@
 ;;(load (concat bluespec-root "mark.el"))
 (autoload 'bsv-mode "bsv-mode" "BSV mode" t )
 (setq auto-mode-alist (cons  '("\\.bsv\\'" . bsv-mode) auto-mode-alist))
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
