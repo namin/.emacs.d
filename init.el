@@ -12,9 +12,12 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(magit company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(pyvenv-workon "..")
- '(safe-local-variable-values '((Syntax . Common-lisp)))
+ '(safe-local-variable-values
+   '((Package . USER)
+     (Syntax . Common-Lisp)
+     (Syntax . Common-lisp)))
  '(scheme-program-name "racket")
  '(show-paren-mode t))
 (custom-set-faces
@@ -22,7 +25,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(font-lock-comment-face ((t (:foreground "dark blue")))))
 
 (add-to-list 'default-frame-alist '(font . "Monaco 17"))
 
@@ -43,8 +46,11 @@
 
 (global-undo-tree-mode)
 
+(add-to-list 'auto-mode-alist '("\\.dcj\\'" . java-mode))
+
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.smt\\'" . scheme-mode))
 
 (autoload 'enable-paredit-mode "paredit"
   "Turn on pseudo-structural editing of Lisp code."
@@ -97,7 +103,8 @@
 
 (setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
 (pyvenv-mode 1)
-
+;; (when (executable-find "ipython")
+;;   (setq python-shell-interpreter "ipython"))
 
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
@@ -224,8 +231,8 @@
 
 (load "~/.emacs.d/scribble.el")
 
-;;(setq twelf-root "/Users/namin/code/152/twelf/")
-;;(load (concat twelf-root "emacs/twelf-init.el"))
+(setq twelf-root "/Users/namin/code/152/twelf/")
+(load (concat twelf-root "emacs/twelf-init.el"))
 
 (add-hook 'go-mode-hook
           (lambda ()
@@ -274,3 +281,9 @@
 ;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+
+(defun insert-current-date () (interactive)
+    (insert (shell-command-to-string "echo -n $(date)")))
+(global-set-key (kbd "C-c d") 'insert-current-date)
+
+(push "fdb_latexmk" completion-ignored-extensions)
