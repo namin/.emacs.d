@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(magit company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(web-mode magit company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(pyvenv-workon "..")
  '(safe-local-variable-values
    '((Package . USER)
@@ -27,7 +27,7 @@
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:foreground "dark blue")))))
 
-(add-to-list 'default-frame-alist '(font . "Monaco 17"))
+(add-to-list 'default-frame-alist '(font . "Monaco 19"))
 
 ;;(setq exec-path-from-shell-check-startup-files nil)
 ;; (when (memq window-system '(mac ns x))
@@ -171,7 +171,7 @@
 (put 'condq 'scheme-indent-function 0)
 (put 'conda 'scheme-indent-function 0)
 (put 'condu 'scheme-indent-function 0)
-(put 'test 'scheme-indent-function 1)
+(put 'test 'scheme-indent-function 0)
 (put 'test-genny 'scheme-indent-function 1)
 (put 'test-unify 'scheme-indent-function 1)
 (put 'test-check 'scheme-indent-function 1)
