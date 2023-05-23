@@ -81,25 +81,25 @@
 ;; slime
 
 ;; update this path to the correct location.
-(setq *slime-path* "~/.emacs.d/elpa/slime-20220707.1413")
-(add-to-list 'load-path *slime-path*)
-(require 'slime-autoloads)
+;; (setq *slime-path* "~/.emacs.d/elpa/slime-20220707.1413")
+;; (add-to-list 'load-path *slime-path*)
+;; (require 'slime-autoloads)
 
-(eval-after-load "slime"
-  '(progn
-    (add-to-list 'load-path *slime-path*)
-    (slime-setup '(slime-fancy slime-banner))
-    (setq slime-complete-symbol*-fancy t)
-    (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
-;;(setq inferior-lisp-program "alisp")
-;;(setq inferior-lisp-program "/Applications/AllegroCL64express.app/Contents/Resources/allegro-express")
+;; (eval-after-load "slime"
+;;   '(progn
+;;     (add-to-list 'load-path *slime-path*)
+;;     (slime-setup '(slime-fancy slime-banner))
+;;     (setq slime-complete-symbol*-fancy t)
+;;     (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
+;; ;;(setq inferior-lisp-program "alisp")
+;; ;;(setq inferior-lisp-program "/Applications/AllegroCL64express.app/Contents/Resources/allegro-express")
 
-(use-package slime
-  :init
-  (global-set-key (kbd "C-c z") 'slime-repl)
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
-  (setq inferior-lisp-program "/usr/local/bin/sbcl")
-  (add-to-list 'slime-contribs 'slime-repl))
+;; (use-package slime
+;;   :init
+;;   (global-set-key (kbd "C-c z") 'slime-repl)
+;;   (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;;   (setq inferior-lisp-program "/usr/local/bin/sbcl")
+;;   (add-to-list 'slime-contribs 'slime-repl))
 
 (setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
 (pyvenv-mode 1)
@@ -231,8 +231,8 @@
 
 (load "~/.emacs.d/scribble.el")
 
-(setq twelf-root "/Users/namin/code/152/twelf/")
-(load (concat twelf-root "emacs/twelf-init.el"))
+;;(setq twelf-root "/Users/namin/code/152/twelf/")
+;;(load (concat twelf-root "emacs/twelf-init.el"))
 
 (add-hook 'go-mode-hook
           (lambda ()
