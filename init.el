@@ -33,13 +33,21 @@
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
 
-(defun my-exec-path-from-shell-initialize ()
-     (when (memq window-system '(mac ns x))
-       (exec-path-from-shell-initialize)))
+;; (defun my-exec-path-from-shell-initialize ()
+;;      (when (memq window-system '(mac ns x))
+;;        (exec-path-from-shell-initialize)))
 
-(use-package exec-path-from-shell
-  :init
-  (add-hook 'after-init-hook 'my-exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :init
+;;   (add-hook 'after-init-hook 'my-exec-path-from-shell-initialize))
+
+;; From https://stackoverflow.com/questions/9435019/how-do-i-source-my-zshrc-within-emacs
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path 
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
