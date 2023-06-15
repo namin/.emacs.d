@@ -59,6 +59,7 @@
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.lurk\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.smt\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.sc\\'" . scheme-mode))
 
 (autoload 'enable-paredit-mode "paredit"
   "Turn on pseudo-structural editing of Lisp code."
@@ -109,8 +110,8 @@
 ;;   (setq inferior-lisp-program "/usr/local/bin/sbcl")
 ;;   (add-to-list 'slime-contribs 'slime-repl))
 
-(setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
-(pyvenv-mode 1)
+;;(setenv "WORKON_HOME" "/Users/namin/opt/anaconda3/envs")
+;;(pyvenv-mode 1)
 ;; (when (executable-find "ipython")
 ;;   (setq python-shell-interpreter "ipython"))
 
