@@ -269,23 +269,23 @@
 (when (require 'ido-ubiquitous nil t)
   (ido-ubiquitous-mode 1))
 
-(setq bluespec-home "/Users/namin/code/blu/bsc/")
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; for bsv mode
-(add-to-list 'load-path (concat bluespec-home "/util/emacs"))
-(load "bsv-mode/bsv-mode-23")
+;; (setq bluespec-home "/Users/namin/code/blu/bsc/")
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; for bsv mode
+;; (add-to-list 'load-path (concat bluespec-home "/util/emacs"))
+;; (load "bsv-mode/bsv-mode-23")
 
-;; for bsv snippets
-(setq bsv-snippets-path (concat bluespec-home "/util/emacs/bsv-snippets"))
-(add-to-list 'load-path bsv-snippets-path)
-(load "bsv-snippets")
+;; ;; for bsv snippets
+;; (setq bsv-snippets-path (concat bluespec-home "/util/emacs/bsv-snippets"))
+;; (add-to-list 'load-path bsv-snippets-path)
+;; (load "bsv-snippets")
 
-;;(setq bluespec-root "/Users/namin/code/blu/bsc/util/emacs/")
-;;(load (concat bluespec-root "bsv-mode/bsv-mode-23.el"))
-;;(load (concat bluespec-root "emacs20-extras.el"))
-;;(load (concat bluespec-root "mark.el"))
-(autoload 'bsv-mode "bsv-mode" "BSV mode" t )
-(setq auto-mode-alist (cons  '("\\.bsv\\'" . bsv-mode) auto-mode-alist))
+;; ;;(setq bluespec-root "/Users/namin/code/blu/bsc/util/emacs/")
+;; ;;(load (concat bluespec-root "bsv-mode/bsv-mode-23.el"))
+;; ;;(load (concat bluespec-root "emacs20-extras.el"))
+;; ;;(load (concat bluespec-root "mark.el"))
+;; (autoload 'bsv-mode "bsv-mode" "BSV mode" t )
+;; (setq auto-mode-alist (cons  '("\\.bsv\\'" . bsv-mode) auto-mode-alist))
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 ;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
