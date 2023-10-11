@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(inferior-lisp-program "alisp" t)
  '(package-selected-packages
-   '(web-mode magit company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
+   '(conda web-mode magit company-coq svelte-mode typescript-mode tabbar ## raku-mode go-mode elixir-mode boogie-friends rust-mode tuareg company ess highlight-parentheses julia-mode pyvenv pyenv-mode jupyter slime sml-mode cider clojure-mode smartparens haskell-mode exec-path-from-shell rainbow-mode paredit-everywhere racket-mode markdown-mode scala-mode undo-tree rainbow-delimiters paredit proof-general))
  '(pyvenv-workon "..")
  '(safe-local-variable-values
    '((Package . USER)
@@ -71,17 +71,17 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-;;(require 'smartparens-config)
-;;(show-smartparens-global-mode +1)
-;;(smartparens-global-mode t)
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(smartparens-global-mode t)
 
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
-(global-company-mode t)
+;;(global-company-mode t)
 
-(progn
-  (highlight-parentheses-mode)
-  (global-highlight-parentheses-mode))
+;; (progn
+;;   (highlight-parentheses-mode)
+;;   (global-highlight-parentheses-mode))
 
 (put 'downcase-region 'disabled nil)
 
@@ -269,16 +269,16 @@
 (when (require 'ido-ubiquitous nil t)
   (ido-ubiquitous-mode 1))
 
-(setq bluespec-home "/Users/namin/code/blu/bsc/")
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; for bsv mode
-(add-to-list 'load-path (concat bluespec-home "/util/emacs"))
-(load "bsv-mode/bsv-mode-23")
+;; (setq bluespec-home "/Users/namin/code/blu/bsc/")
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; for bsv mode
+;; (add-to-list 'load-path (concat bluespec-home "/util/emacs"))
+;; (load "bsv-mode/bsv-mode-23")
 
-;; for bsv snippets
-(setq bsv-snippets-path (concat bluespec-home "/util/emacs/bsv-snippets"))
-(add-to-list 'load-path bsv-snippets-path)
-(load "bsv-snippets")
+;; ;; for bsv snippets
+;; (setq bsv-snippets-path (concat bluespec-home "/util/emacs/bsv-snippets"))
+;; (add-to-list 'load-path bsv-snippets-path)
+;; (load "bsv-snippets")
 
 ;;(setq bluespec-root "/Users/namin/code/blu/bsc/util/emacs/")
 ;;(load (concat bluespec-root "bsv-mode/bsv-mode-23.el"))
@@ -296,3 +296,11 @@
 (global-set-key (kbd "C-c d") 'insert-current-date)
 
 (push "fdb_latexmk" completion-ignored-extensions)
+
+(require 'conda)
+;; if you want interactive shell support, include:
+(conda-env-initialize-interactive-shells)
+;; if you want eshell support, include:
+(conda-env-initialize-eshell)
+;; if you want auto-activation (see below for details), include:
+(conda-env-autoactivate-mode t)
