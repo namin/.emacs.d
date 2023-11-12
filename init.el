@@ -71,9 +71,9 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-(require 'smartparens-config)
-(show-smartparens-global-mode +1)
-(smartparens-global-mode t)
+;;(require 'smartparens-config)
+;;(show-smartparens-global-mode +1)
+;;(smartparens-global-mode t)
 
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
