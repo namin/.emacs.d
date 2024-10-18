@@ -5,14 +5,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ignored-local-variable-values '((global-visual-line-mode)))
  '(package-selected-packages
-   '(slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
+   '(scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;(add-to-list 'default-frame-alist '(font . "Monaco 24"))
+
 (setq-default frame-title-format '("%b"))
 
 (setq undo-tree-auto-save-history nil)
@@ -37,4 +41,27 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
-(setq inferior-lisp-program "sbcl") ;;  --control-stack-size 10000
+(setq inferior-lisp-program "sbcl --control-stack-size 1000 --dynamic-space-size 10000000")
+
+;; work-around mac os x key bindings using karabiner
+(global-set-key (kbd "A-M-<right>") 'paredit-forward-slurp-sexp)
+(global-set-key (kbd "A-M-<left>") 'paredit-forward-barf-sexp)
+
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
+(global-set-key (kbd "C-x a") 'revert-buffer-no-confirm)
+
+
+(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+
+(defun my-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955)              ; λ
+          )))
+
+(add-hook 'text-mode-hook 'my-pretty-lambda)
+(add-hook 'shell-mode-hook 'my-pretty-lambda)
+(global-prettify-symbols-mode 1)
