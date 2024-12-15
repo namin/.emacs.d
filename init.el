@@ -7,7 +7,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((global-visual-line-mode)))
  '(package-selected-packages
-   '(scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
+   '(cider scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;(add-to-list 'default-frame-alist '(font . "Monaco 24"))
+(add-to-list 'default-frame-alist '(font . "Monaco 22"))
 
 (setq-default frame-title-format '("%b"))
 
@@ -65,3 +65,9 @@
 (add-hook 'text-mode-hook 'my-pretty-lambda)
 (add-hook 'shell-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
+(require 'dafny-mode)
+(require 'boogie-mode)
+
+(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
