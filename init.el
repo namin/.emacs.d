@@ -7,7 +7,10 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((global-visual-line-mode)))
  '(package-selected-packages
-   '(cider scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
+   '(cider scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters
+           ;;paredit
+           ;;undo-tree
+           )))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,12 +22,12 @@
 
 (setq-default frame-title-format '("%b"))
 
-(setq undo-tree-auto-save-history nil)
+;;(setq undo-tree-auto-save-history nil)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 
-(global-undo-tree-mode)
+;;(global-undo-tree-mode)
 
 (add-to-list 'auto-mode-alist '("\\.dcj\\'" . java-mode))
 
@@ -33,13 +36,13 @@
 (add-to-list 'auto-mode-alist '("\\.smt\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.sc\\'" . scheme-mode))
 
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural editing of Lisp code."
-  t)
-(add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           'enable-paredit-mode)
+;; (autoload 'enable-paredit-mode "paredit"
+;;   "Turn on pseudo-structural editing of Lisp code."
+;;   t)
+;; (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
+;; (add-hook 'lisp-mode-hook             'enable-paredit-mode)
+;; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+;; (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
 (setq inferior-lisp-program "sbcl --control-stack-size 1000 --dynamic-space-size 10000000")
 
@@ -66,8 +69,8 @@
 (add-hook 'shell-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
-(require 'dafny-mode)
-(require 'boogie-mode)
+;;(add-to-list 'load-path "~/.emacs.d/lisp/boogie-friends/emacs/")
+;;(require 'dafny-mode)
+;;(require 'boogie-mode)
 
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
