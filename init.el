@@ -7,7 +7,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((global-visual-line-mode)))
  '(package-selected-packages
-   '(cider scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
+   '(go-mode haskell-mode gptel ## merlin tuareg chatgpt-shell proof-general cider scala-mode slime yaml-mode jinja2-mode typescript-mode markdown-mode conda highlight-parentheses company rainbow-delimiters paredit undo-tree)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(add-to-list 'default-frame-alist '(font . "Monaco 22"))
+(add-to-list 'default-frame-alist '(font . "Monaco 19"))
 
 (setq-default frame-title-format '("%b"))
 
@@ -23,6 +23,10 @@
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
+
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq js-indent-level 2)))
 
 (global-undo-tree-mode)
 
@@ -41,7 +45,12 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
-(setq inferior-lisp-program "sbcl --control-stack-size 1000 --dynamic-space-size 10000000")
+(add-hook 'inferior-scheme-mode-hook
+          (lambda ()
+            (paredit-mode 1)
+            (define-key paredit-mode-map (kbd "RET") nil)))
+
+(setq inferior-lisp-program "sbcl")
 
 ;; work-around mac os x key bindings using karabiner
 (global-set-key (kbd "A-M-<right>") 'paredit-forward-slurp-sexp)
@@ -71,3 +80,6 @@
 (require 'boogie-mode)
 
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+
+(setq twelf-root "/Users/namin/code/152/twelf/")
+(load (concat twelf-root "emacs/twelf-init.el"))
