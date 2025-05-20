@@ -37,6 +37,9 @@
 (add-to-list 'auto-mode-alist '("\\.smt\\'" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.sc\\'" . scheme-mode))
 
+(add-to-list 'auto-mode-alist '("\\.bl\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.blk\\'" . scheme-mode))
+
 (autoload 'enable-paredit-mode "paredit"
   "Turn on pseudo-structural editing of Lisp code."
   t)
@@ -48,7 +51,8 @@
 (add-hook 'inferior-scheme-mode-hook
           (lambda ()
             (paredit-mode 1)
-            (define-key paredit-mode-map (kbd "RET") nil)))
+            (define-key paredit-mode-map (kbd "RET") nil)
+            (define-key paredit-mode-map (kbd "C-d") 'comint-delchar-or-maybe-eof)))
 
 (setq inferior-lisp-program "sbcl")
 
