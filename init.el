@@ -54,6 +54,7 @@
             (define-key paredit-mode-map (kbd "RET") nil)
             (define-key paredit-mode-map (kbd "C-d") 'comint-delchar-or-maybe-eof)))
 
+(setq scheme-program-name "chez")
 (setq inferior-lisp-program "sbcl")
 
 ;; work-around mac os x key bindings using karabiner
