@@ -101,8 +101,8 @@
           (lambda () (electric-indent-mode -1)))
 
 ;; Twelf
-;; (setq twelf-root "/Users/namin/code/152/twelf/")
-;; (load (concat twelf-root "emacs/twelf-init.el"))
+;;(setq twelf-root "~/code/152/twelf/")
+;;(load (concat twelf-root "emacs/twelf-init.el"))
 
 ;; Scheme indentation rules (miniKanren + friends)
 (put 'generate-verify   'scheme-indent-function 1)
